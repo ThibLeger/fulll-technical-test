@@ -1,0 +1,9 @@
+.usersListContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

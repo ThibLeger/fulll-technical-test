@@ -1,0 +1,21 @@
+.searchInputContainer {
+    padding: 2em 0;
+}
+
+#searchInput {
+    background-color: lightgray;
+    border: 0px;
+    border-radius: 5px;
+    height: 50px;
+    width: 25%;
+    outline: none;
+    
+    color: black;
+    font-size: 20px;
+    font-weight: 500;    
+    text-align: center;
+}
+
+#searchInput:focus {
+    border: 0px !important
+}
