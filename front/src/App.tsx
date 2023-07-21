@@ -11,12 +11,19 @@ function App() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [githubUsers, setGithubUsers] = useState<Array<GitHubUser>>([]);
 
+  const [isFetchingError, setIsFetchingError] = useState<boolean>(false);
+
   useEffect(() => {
-    if (searchValue !== "") {
+    if (searchValue === "") {
+      setGithubUsers([]);
+    } else {
       getGitHubUsers(searchValue)
         .then((result) => {
           setGithubUsers(result);
-        });
+          setIsFetchingError(false);
+        }).catch(() => {
+          setIsFetchingError(true);
+        })
     }
   }, [searchValue]);
 
@@ -31,14 +38,20 @@ function App() {
           Github Search
         </header>
 
-        <SearchInput 
+        <SearchInput
           onChange={handleOnSearchInputChange} 
         />
       </div>
       
-      <UsersList 
-        users={githubUsers}
-      />
+
+      {
+        !isFetchingError ? 
+          <UsersList
+            users={githubUsers}
+          /> 
+          : <div>An error Occured trying to fetch users, please try again</div>
+      }
+      
     </div>
   );
 }

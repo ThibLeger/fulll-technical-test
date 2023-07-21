@@ -5,6 +5,7 @@
     margin: 1em;
     padding: 10px 0;
     border-radius: 5px;
+    overflow: hidden;
 
     background-color: lightgray;
 }
@@ -22,6 +23,7 @@
 .userCardTextInfo {
     font-size: 12px;
     margin: 10px;
+    overflow: hidden;
 }
 
 .viewProfileLink {

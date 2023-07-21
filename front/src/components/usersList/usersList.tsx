@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 
 import GitHubUser from '../../types/githubUser';
 
@@ -14,9 +14,12 @@ const UsersList: FC<UserListProps> = ({users}): ReactElement => {
 
     return (
         <div className='usersListContainer'>
-            {users.map((user : GitHubUser) => (
-                <UserCard user={user} key={user.id} />
-            ))}
+            {users.length > 0 ? 
+                users.map((user : GitHubUser) => (
+                    <UserCard user={user} key={user.id} />
+                )) :
+                <div>No result</div>
+            }
         </div>
     );
 };

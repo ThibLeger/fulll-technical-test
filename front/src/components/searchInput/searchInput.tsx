@@ -17,14 +17,14 @@ const SearchInput: FC<SearchInputProps> = ({onChange}): ReactElement => {
 
     useEffect(() => {
         onChange(debouncedInputValue);
-    }, [debouncedInputValue]);
+    }, [debouncedInputValue, onChange]);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
           setDebouncedInputValue(inputValue);
         }, 500);
         return () => clearTimeout(timeoutId);
-    }, [inputValue, 500]);
+    }, [inputValue]);
 
     return (
         <div className='searchInputContainer'>
