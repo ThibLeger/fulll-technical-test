@@ -1,19 +1,23 @@
-import { FC, ReactElement } from 'react';
+import { ChangeEvent, FC, MouseEventHandler, ReactElement } from 'react';
 
 import GitHubUser from '../../types/githubUser';
 
 import './userCard.css';
 
 type UserCardProps = {
-    user: GitHubUser
+    user: GitHubUser,
+
+    onUserCheckboxClick : Function,
 }
   
-const UsersList: FC<UserCardProps> = ({user}): ReactElement => {
+const UsersList: FC<UserCardProps> = ({user, onUserCheckboxClick}): ReactElement => {
+
+    
 
     return (
         <div className='userCard'>
             <div  className='userCardCheckboxContainer'>
-                <input type='checkbox' className='userCardCheckbox' />
+                <input type='checkbox' className='userCardCheckbox' onClick={() => onUserCheckboxClick(user.id)} />
             </div>
 
             <div className='userAvatarContainer'>

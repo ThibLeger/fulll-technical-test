@@ -7,13 +7,19 @@ type SearchInputProps = {
 }
   
 const SearchInput: FC<SearchInputProps> = ({onChange}): ReactElement => {
-
+    // the value of the input, this value is modified in real time
     const [inputValue, setInputValue] = useState<string>("");
+ 
+    // this variable is a copy of the above using deboucne mecanism, only propage change event on change of this one
     const [debouncedInputValue, setDebouncedInputValue] = useState<string>("");
     
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
     };
+
+    // use debounce mecanism to make sure we dont send to many requests to the github API
+    // debounce timer in ms
+    const debounceTimer = 500;
 
     useEffect(() => {
         onChange(debouncedInputValue);
@@ -22,7 +28,7 @@ const SearchInput: FC<SearchInputProps> = ({onChange}): ReactElement => {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
           setDebouncedInputValue(inputValue);
-        }, 500);
+        }, debounceTimer);
         return () => clearTimeout(timeoutId);
     }, [inputValue]);
 
