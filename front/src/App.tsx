@@ -44,13 +44,15 @@ function App() {
       </div>
       
 
-      {
-        !isFetchingError ? 
-          <UsersList
-            users={githubUsers}
-          /> 
-          : <div>An error Occured trying to fetch users, please try again</div>
-      }
+      <div className='App-content'>
+        {
+          !isFetchingError ? 
+            <UsersList
+              users={githubUsers}
+            /> 
+            : <div>An error Occured trying to fetch users, please try again</div>
+        }
+      </div>
       
     </div>
   );

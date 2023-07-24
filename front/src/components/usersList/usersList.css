@@ -4,6 +4,5 @@
     flex-wrap: wrap;
     justify-content: center;
 
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
 }
