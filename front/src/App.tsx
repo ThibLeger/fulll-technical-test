@@ -68,6 +68,7 @@ function App() {
   const handleOnDeleteIconClick = () => {
     // get users that are not selected
     const newUsers = githubUsers.filter(user => !selectedUsers.includes(user.id));
+    setSelectedUsers([]);
     setGithubUsers(newUsers);
   };
 

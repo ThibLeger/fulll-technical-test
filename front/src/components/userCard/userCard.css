@@ -8,6 +8,7 @@
     overflow: hidden;
     position: relative;
     background-color: lightgray;
+    box-shadow: 2px 2px 4px #5e5a5a;
 }
 
 .userAvatarContainer {
