@@ -1,0 +1,22 @@
+.actionBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 40px;
+}
+
+.actionBar input {
+    cursor: pointer;
+}
+
+.actionBarIconContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.actionBarIconContainer svg {
+    margin: 0 5px;
+    height: 20px;
+    width: auto;
+    cursor: pointer;
+}

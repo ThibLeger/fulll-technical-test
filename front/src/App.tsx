@@ -6,6 +6,7 @@ import GitHubUser from './types/githubUser';
 import { getGitHubUsers } from './actions/actions';
 import SearchInput from './components/searchInput/searchInput';
 import UsersList from './components/usersList/usersList';
+import ActionBar from './components/actionBar/actionBar';
 
 function App() {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -41,6 +42,8 @@ function App() {
         <SearchInput
           onChange={handleOnSearchInputChange} 
         />
+
+        <ActionBar nbElementsSelected={0} />
       </div>
       
 
