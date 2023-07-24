@@ -6,12 +6,17 @@
     padding: 10px 0;
     border-radius: 5px;
     overflow: hidden;
-
+    position: relative;
     background-color: lightgray;
 }
 
 .userAvatarContainer {
     width: 100%;
+}
+
+.userCardCheckboxContainer {
+    position: absolute;
+    left: 5px;
 }
 
 .userAvatarContainer img {

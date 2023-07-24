@@ -12,6 +12,10 @@ const UsersList: FC<UserCardProps> = ({user}): ReactElement => {
 
     return (
         <div className='userCard'>
+            <div  className='userCardCheckboxContainer'>
+                <input type='checkbox' className='userCardCheckbox' />
+            </div>
+
             <div className='userAvatarContainer'>
                 <img src={user.avatar_url} alt='userAvatar' />
             </div>
