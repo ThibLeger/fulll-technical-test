@@ -29,7 +29,7 @@ const UsersList: FC<UserListProps> = (props): ReactElement => {
                         isEditMode={props.isEditMode}
                     />
                 )) :
-                <div>No result</div>
+                <div className='noResultLabel'>No result</div>
             }
         </div>
     );

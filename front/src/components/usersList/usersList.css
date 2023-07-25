@@ -8,3 +8,7 @@
     margin: 5px;
     border: 1px solid black;
 }
+
+.noResultLabel {
+    margin: 20px;
+}
