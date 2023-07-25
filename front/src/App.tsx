@@ -78,7 +78,7 @@ function App() {
     const newUsers = githubUsers.filter(user => selectedUsers.includes(user.id)).map(user => ({
         ...user,
         id: `${user.id}${Math.random()}`
-    }))
+    }));
 
     setGithubUsers(
       [
@@ -101,6 +101,7 @@ function App() {
 
         <ActionBar
           nbElementsSelected={selectedUsers.length}
+          areAllUsersSelected={githubUsers.length === selectedUsers.length}
           onSelectAllUsersClick={handleSelectAllUsers}
           onDeleteIconClick={handleOnDeleteIconClick}
           onDuplicateIconClick={handleOnDuplicateIconClick} 
@@ -114,6 +115,7 @@ function App() {
             <UsersList
               users={githubUsers}
               onUserCheckboxClick={handleOnUserCheckboxClick}
+              selectedUsers={selectedUsers}
             />
             : <div>An error Occured trying to fetch users, please try again</div>
         }

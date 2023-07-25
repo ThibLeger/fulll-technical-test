@@ -6,18 +6,16 @@ import './userCard.css';
 
 type UserCardProps = {
     user: GitHubUser,
+    isUserSelected: boolean,
 
     onUserCheckboxClick : Function,
 }
   
-const UsersList: FC<UserCardProps> = ({user, onUserCheckboxClick}): ReactElement => {
-
-    
-
+const UsersList: FC<UserCardProps> = ({user, onUserCheckboxClick, isUserSelected}): ReactElement => {
     return (
         <div className='userCard'>
             <div  className='userCardCheckboxContainer'>
-                <input type='checkbox' className='userCardCheckbox' onClick={() => onUserCheckboxClick(user.id)} />
+                <input type='checkbox' className='userCardCheckbox' onClick={() => onUserCheckboxClick(user.id)} checked={isUserSelected} />
             </div>
 
             <div className='userAvatarContainer'>
