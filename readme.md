@@ -13,9 +13,14 @@ if N is not defined or not a integer, 100 will be default parameter
 # Front
 this is a standard React front
 
-
 ```
 cd front
 npm i
 npm run start
+```
+
+To launch tests
+```
+cd front
+npm test
 ```
