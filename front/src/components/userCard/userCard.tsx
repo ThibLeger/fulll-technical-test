@@ -7,16 +7,19 @@ import './userCard.css';
 type UserCardProps = {
     user: GitHubUser,
     isUserSelected: boolean,
+    isEditMode: boolean,
 
     onUserCheckboxClick : Function,
 }
   
-const UsersList: FC<UserCardProps> = ({user, onUserCheckboxClick, isUserSelected}): ReactElement => {
+const UsersList: FC<UserCardProps> = ({user, onUserCheckboxClick, isUserSelected, isEditMode}): ReactElement => {
     return (
         <div className='userCard'>
-            <div  className='userCardCheckboxContainer'>
-                <input type='checkbox' className='userCardCheckbox' onClick={() => onUserCheckboxClick(user.id)} checked={isUserSelected} />
-            </div>
+            {isEditMode && (
+                <div  className='userCardCheckboxContainer'>
+                    <input type='checkbox' className='userCardCheckbox' onClick={() => onUserCheckboxClick(user.id)} checked={isUserSelected} />
+                </div>
+            )}
 
             <div className='userAvatarContainer'>
                 <img src={user.avatar_url} alt='userAvatar' />

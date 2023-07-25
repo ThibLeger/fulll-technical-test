@@ -9,27 +9,43 @@ type ActionBarProps = {
     nbElementsSelected: number,
     // used to display the check for the input when all users are selected
     areAllUsersSelected: boolean,
+    isEditMode: boolean,
 
     onSelectAllUsersClick: Function,
     onDeleteIconClick : Function,
     onDuplicateIconClick: Function,
+    onEditModeToggle: Function,
 }
   
-const ActionBar: FC<ActionBarProps> = ({nbElementsSelected, onSelectAllUsersClick, onDeleteIconClick, onDuplicateIconClick, areAllUsersSelected}): ReactElement => {
+const ActionBar: FC<ActionBarProps> = ({nbElementsSelected, onSelectAllUsersClick, onDeleteIconClick, onDuplicateIconClick, areAllUsersSelected, onEditModeToggle, isEditMode}): ReactElement => {
     return (
-        <div className='actionBar'>
-            <div>
-                <input
-                    type='checkbox'
-                    onClick={() => onSelectAllUsersClick()}
-                    checked={nbElementsSelected > 0 && areAllUsersSelected}
-                />{nbElementsSelected} element selected
+        <div>
+            <div className='editModeContainer'>
+                <div className='editModeLabel'>Edit Mode</div>
+                <label className="switch">
+                    <input type="checkbox" onChange={() => onEditModeToggle()} />
+                    <span className="slider round"></span>
+                </label>
             </div>
 
-            <div className='actionBarIconContainer'>
-                <DeleteIcon onClick={() => onDeleteIconClick()} />
-                <DuplicateIcon onClick={() => onDuplicateIconClick()} />
-            </div>
+            {isEditMode && (
+                <div className='actionBar'>
+                    <div>
+                        <input
+                            type='checkbox'
+                            onClick={() => onSelectAllUsersClick()}
+                            checked={nbElementsSelected > 0 && areAllUsersSelected}
+                        />{nbElementsSelected} element selected
+                    </div>            
+
+                    <div className='actionBarIconContainer'>
+                        <div>
+                            <DeleteIcon onClick={() => onDeleteIconClick()} />
+                            <DuplicateIcon onClick={() => onDuplicateIconClick()} />
+                        </div>
+                    </div>                
+                </div>
+            )}
         </div>
     );
 };

@@ -14,6 +14,7 @@ function App() {
   const [selectedUsers, setSelectedUsers] = useState<Array<string>>([]);
 
   const [isFetchingError, setIsFetchingError] = useState<boolean>(false);
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
   // when searchvalue changes, fetch users from github api
   useEffect(() => {
@@ -88,6 +89,11 @@ function App() {
     );
   };
 
+  const toggleEditMode = () => {
+    setSelectedUsers([]);
+    setIsEditMode(!isEditMode);
+  };
+
   return (
     <div className="App">
       <div>
@@ -104,7 +110,9 @@ function App() {
           areAllUsersSelected={githubUsers.length === selectedUsers.length}
           onSelectAllUsersClick={handleSelectAllUsers}
           onDeleteIconClick={handleOnDeleteIconClick}
-          onDuplicateIconClick={handleOnDuplicateIconClick} 
+          onDuplicateIconClick={handleOnDuplicateIconClick}
+          onEditModeToggle={toggleEditMode}
+          isEditMode={isEditMode}
         />
       </div>
       
@@ -116,6 +124,7 @@ function App() {
               users={githubUsers}
               onUserCheckboxClick={handleOnUserCheckboxClick}
               selectedUsers={selectedUsers}
+              isEditMode={isEditMode}
             />
             : <div>An error Occured trying to fetch users, please try again</div>
         }

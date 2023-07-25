@@ -9,11 +9,12 @@ import "./usersList.css";
 type UserListProps = {
     users: Array<GitHubUser>,
     selectedUsers: Array<string>,
+    isEditMode: boolean,
 
     onUserCheckboxClick: Function,
 }
   
-const UsersList: FC<UserListProps> = ({users, onUserCheckboxClick, selectedUsers}): ReactElement => {
+const UsersList: FC<UserListProps> = ({users, onUserCheckboxClick, selectedUsers, isEditMode}): ReactElement => {
 
   
     return (
@@ -25,6 +26,7 @@ const UsersList: FC<UserListProps> = ({users, onUserCheckboxClick, selectedUsers
                         key={user.id}
                         onUserCheckboxClick={onUserCheckboxClick}
                         isUserSelected={selectedUsers.includes(user.id)}
+                        isEditMode={isEditMode}
                     />
                 )) :
                 <div>No result</div>
