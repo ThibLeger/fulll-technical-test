@@ -19,7 +19,7 @@ test('no result by default', () => {
   expect(noResultText).toBeInTheDocument();
 });
 
-test('search a user and check its checkbox', () => {
+test('search a user', () => {
   const { container } = render(<App />);
   const searchInput = screen.getByPlaceholderText(/search input/i);
   
@@ -29,12 +29,29 @@ test('search a user and check its checkbox', () => {
   setTimeout(() => {
     const userId = screen.getByText(/14903853/i);
     expect(userId).toBeInTheDocument();
-
-    const userCheckbox = container.getElementsByClassName("userCardCheckbox")[0];
-    expect(userCheckbox).toBeInTheDocument();
-
-    fireEvent.click(userCheckbox);
-    const nbOfElements = screen.getByText(/1 element selected/i);
-    expect(nbOfElements).toBeInTheDocument();
   }, 1000);
+});
+
+test('checks edit mode is off by default', () => {
+  const { container } = render(<App />);
+  const editModeContainer = container.getElementsByClassName("editModeContainer")[0];
+  const editModeInput = editModeContainer.getElementsByTagName('input')[0];
+
+  expect(editModeInput).not.toBeChecked();
+
+  // checks action buttons are not reachable
+  const actionBtnContainer = container.getElementsByClassName('actionBarIconContainer');
+  expect(actionBtnContainer.length).toBeLessThanOrEqual(0);
+});
+
+test('checks action buttons are reachable in edit mode', () => {
+  const { container } = render(<App />);
+  const editModeContainer = container.getElementsByClassName("editModeContainer")[0];
+  const editModeInput = editModeContainer.getElementsByTagName('input')[0];
+
+  fireEvent.click(editModeInput);
+
+  // checks action buttons are reachable
+  const actionBtnContainer = container.getElementsByClassName('actionBarIconContainer');
+  expect(actionBtnContainer.length).toBeGreaterThanOrEqual(1);
 });

@@ -19,9 +19,12 @@ function App() {
   // when searchvalue changes, fetch users from github api
   useEffect(() => {
     setSelectedUsers([]);
+    
+    // if search value is empty, reset the users without calling the api
     if (searchValue === "") {
       setGithubUsers([]);
     } else {
+      // call github api
       getGitHubUsers(searchValue)
         .then((result) => {
           setGithubUsers(result);
@@ -41,19 +44,11 @@ function App() {
   const handleOnUserCheckboxClick = (userId: string) => {
     // if user is already present, we unselect it
     if (selectedUsers.includes(userId)) {
-      unSelectUser(userId);
+      setSelectedUsers(selectedUsers.filter(item => item !== userId))
     } else {
       // else add it to the list
-      selectUser(userId);
+      setSelectedUsers([...selectedUsers, userId]);
     }
-  };
-
-  const selectUser = (userId: string) => {
-    setSelectedUsers([...selectedUsers, userId]);
-  };
-
-  const unSelectUser = (userId: string) => {
-    setSelectedUsers(selectedUsers.filter(item => item !== userId));
   };
   
   // when users clicks on the "select all users" checkbox
@@ -67,10 +62,10 @@ function App() {
   };
 
   const handleOnDeleteIconClick = () => {
-    // get users that are not selected
+    // update the state to leave only the non selected users
     const newUsers = githubUsers.filter(user => !selectedUsers.includes(user.id));
-    setSelectedUsers([]);
     setGithubUsers(newUsers);
+    setSelectedUsers([]);
   };
 
   const handleOnDuplicateIconClick = () => {

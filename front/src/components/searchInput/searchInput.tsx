@@ -6,7 +6,7 @@ type SearchInputProps = {
     onChange: Function,
 }
   
-const SearchInput: FC<SearchInputProps> = ({onChange}): ReactElement => {
+const SearchInput: FC<SearchInputProps> = (props): ReactElement => {
     // the value of the input, this value is modified in real time
     const [inputValue, setInputValue] = useState<string>("");
  
@@ -22,8 +22,8 @@ const SearchInput: FC<SearchInputProps> = ({onChange}): ReactElement => {
     const debounceTimer = 500;
 
     useEffect(() => {
-        onChange(debouncedInputValue);
-    }, [debouncedInputValue, onChange]);
+        props.onChange(debouncedInputValue);
+    }, [debouncedInputValue, props]);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {

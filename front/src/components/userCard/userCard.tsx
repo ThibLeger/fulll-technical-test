@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, MouseEventHandler, ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 
 import GitHubUser from '../../types/githubUser';
 
@@ -12,26 +12,31 @@ type UserCardProps = {
     onUserCheckboxClick : Function,
 }
   
-const UsersList: FC<UserCardProps> = ({user, onUserCheckboxClick, isUserSelected, isEditMode}): ReactElement => {
+const UsersList: FC<UserCardProps> = (props): ReactElement => {
     return (
         <div className='userCard'>
-            {isEditMode && (
+            {props.isEditMode && (
                 <div  className='userCardCheckboxContainer'>
-                    <input type='checkbox' className='userCardCheckbox' onClick={() => onUserCheckboxClick(user.id)} checked={isUserSelected} />
+                    <input
+                        type='checkbox'
+                        className='userCardCheckbox'
+                        onClick={() => props.onUserCheckboxClick(props.user.id)}
+                        checked={props.isUserSelected}
+                    />
                 </div>
             )}
 
             <div className='userAvatarContainer'>
-                <img src={user.avatar_url} alt='userAvatar' />
+                <img src={props.user.avatar_url} alt='userAvatar' />
             </div>
 
             <div className='userCardTextInfo'>
-                <div>{user.id}</div>
-                <div>{user.login}</div>
+                <div>{props.user.id}</div>
+                <div>{props.user.login}</div>
             </div>
 
             <div>
-                <a href={user.html_url} target='_blank' rel='noreferrer' className='viewProfileLink'>
+                <a href={props.user.html_url} target='_blank' rel='noreferrer' className='viewProfileLink'>
                     View profile
                 </a>
             </div>

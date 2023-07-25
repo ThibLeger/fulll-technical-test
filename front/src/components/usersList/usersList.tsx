@@ -14,19 +14,19 @@ type UserListProps = {
     onUserCheckboxClick: Function,
 }
   
-const UsersList: FC<UserListProps> = ({users, onUserCheckboxClick, selectedUsers, isEditMode}): ReactElement => {
+const UsersList: FC<UserListProps> = (props): ReactElement => {
 
   
     return (
         <div className='usersListContainer'>
-            {users.length > 0 ? 
-                users.map((user : GitHubUser) => (
+            {props.users.length > 0 ? 
+                props.users.map((user : GitHubUser) => (
                     <UserCard
                         user={user} 
                         key={user.id}
-                        onUserCheckboxClick={onUserCheckboxClick}
-                        isUserSelected={selectedUsers.includes(user.id)}
-                        isEditMode={isEditMode}
+                        onUserCheckboxClick={props.onUserCheckboxClick}
+                        isUserSelected={props.selectedUsers.includes(user.id)}
+                        isEditMode={props.isEditMode}
                     />
                 )) :
                 <div>No result</div>

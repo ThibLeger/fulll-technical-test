@@ -1,4 +1,4 @@
-import { FC, ReactElement, useEffect, useState } from 'react';
+import { FC, ReactElement } from 'react';
 
 import "./actionBar.css";
 
@@ -17,31 +17,31 @@ type ActionBarProps = {
     onEditModeToggle: Function,
 }
   
-const ActionBar: FC<ActionBarProps> = ({nbElementsSelected, onSelectAllUsersClick, onDeleteIconClick, onDuplicateIconClick, areAllUsersSelected, onEditModeToggle, isEditMode}): ReactElement => {
+const ActionBar: FC<ActionBarProps> = (props): ReactElement => {
     return (
         <div>
             <div className='editModeContainer'>
                 <div className='editModeLabel'>Edit Mode</div>
                 <label className="switch">
-                    <input type="checkbox" onChange={() => onEditModeToggle()} />
+                    <input type="checkbox" onChange={() => props.onEditModeToggle()} id='selectAllUsersInput' />
                     <span className="slider round"></span>
                 </label>
             </div>
 
-            {isEditMode && (
+            {props.isEditMode && (
                 <div className='actionBar'>
                     <div>
                         <input
                             type='checkbox'
-                            onClick={() => onSelectAllUsersClick()}
-                            checked={nbElementsSelected > 0 && areAllUsersSelected}
-                        />{nbElementsSelected} element selected
-                    </div>            
+                            onChange={() => props.onSelectAllUsersClick()}
+                            checked={props.nbElementsSelected > 0 && props.areAllUsersSelected}
+                        />{props.nbElementsSelected} element selected
+                    </div>
 
                     <div className='actionBarIconContainer'>
                         <div>
-                            <DeleteIcon onClick={() => onDeleteIconClick()} />
-                            <DuplicateIcon onClick={() => onDuplicateIconClick()} />
+                            <DeleteIcon onClick={() => props.onDeleteIconClick()} />
+                            <DuplicateIcon onClick={() => props.onDuplicateIconClick()} />
                         </div>
                     </div>                
                 </div>
